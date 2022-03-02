@@ -5,14 +5,11 @@ namespace Lab21
 {
     class Program
     {
-        const int n = 35;
+        const int n = 10;
         static int[,] array = new int[n, n];
 
         static void Main(string[] args)
         {
-
-            //Console.WriteLine("Введите размеры участка земли");
-            //int n = Convert.ToInt32(Console.ReadLine());
             ThreadStart threadStart = new ThreadStart(Gardener1);
             Thread thread = new Thread(threadStart);
             thread.Start();
@@ -30,7 +27,7 @@ namespace Lab21
         }
         static public void Gardener1()
         {
-            for (int i = 0; i < n; i = i + 2)
+            for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
                 {
@@ -42,27 +39,13 @@ namespace Lab21
                     {
                         array[i, j] = -1;
                     }
+                    Thread.Sleep(1);
                 }
-            }
-
-            for (int i = 1; i < n; i = i + 2)
-            {
-                for (int j = n - 1; j >= 0; j--)
-                {
-                    if (array[i, j] < 0)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        array[i, j] = -1;
-                    }
-                }
-            }
+            }            
         }
         static public void Gardener2()
         {
-            for (int j = n - 1; j >= 0; j=j-2)
+            for (int j = n - 1; j >= 0; j--)
             {
                 for (int i = n - 1; i >= 0; i--)
                 {
@@ -74,21 +57,7 @@ namespace Lab21
                     {
                         array[i, j] = -2;
                     }
-                }
-            }
-
-            for (int j = n - 2; j >= 0; j = j - 2)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    if (array[i, j] < 0)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        array[i, j] = -2;
-                    }
+                    Thread.Sleep(1);
                 }
             }
         }
